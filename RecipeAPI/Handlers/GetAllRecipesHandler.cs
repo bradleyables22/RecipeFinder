@@ -21,6 +21,8 @@ namespace RecipeAPI.Handlers
 			try
 			{
                 var result = await _context.Recipes
+                    .Include(x=>x.Ingredients)
+                    .Include(x=>x.Instructions)
                     .OrderByDescending(x => x.PublishedAt)
                     .Select(x=> new RecipeDTO(x, request.includeNested))
                     .ToListAsync()

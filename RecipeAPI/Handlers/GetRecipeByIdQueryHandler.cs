@@ -23,6 +23,8 @@ namespace RecipeAPI.Handlers
             {
                 var result = await _recipeContext.Recipes
                     .Where(x => x.RecipeID == request.id)
+                    .Include(x=>x.Ingredients)
+                    .Include(x=>x.Instructions)
                     .Select(x=> new RecipeDTO(x,request.includeNested))
                     .FirstOrDefaultAsync();
 
