@@ -1,5 +1,5 @@
-﻿using RfCommonLibrary.DatabaseModels;
-using RfCommonLibrary.Enums;
+﻿using RfCommonLibrary.Recipes.DatabaseModels;
+using RfCommonLibrary.Recipes.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RfCommonLibrary.DTOs.QueryDTOs
+namespace RfCommonLibrary.Recipes.DTOs.QueryDTOs
 {
     public class IngredientDTO
     {
         public IngredientDTO()
         {
-            
+
         }
 
         public IngredientDTO(Ingredient? entity, bool includeParent = false)

@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using RfCommonLibrary.DTOs.QueryDTOs;
+using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 using RfCommonLibrary.Utilities;
 
-namespace RecipeAPI.Queries
+namespace RecipeAPI.Recipes.Queries
 {
     public record GetAllRecipesQuery(bool includeNested = false) : IRequest<Result<List<RecipeDTO>>>;
 }

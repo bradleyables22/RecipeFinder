@@ -1,7 +1,7 @@
-﻿using RfCommonLibrary.Enums;
+﻿using RfCommonLibrary.Recipes.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace RfCommonLibrary.DTOs.Manipulate
+namespace RfCommonLibrary.Recipes.DTOs.Manipulate
 {
     public class AddEditRecipeDTO
     {
@@ -9,7 +9,7 @@ namespace RfCommonLibrary.DTOs.Manipulate
         public Guid RecipeID { get; set; } = Guid.NewGuid();
 
         [Required]
-        [StringLength(50, MinimumLength = 5, ErrorMessage ="MIN: 5, MAX: 50")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "MIN: 5, MAX: 50")]
         public string Title { get; set; } = string.Empty;
         [Required]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "MIN: 5, MAX: 100")]
@@ -17,6 +17,7 @@ namespace RfCommonLibrary.DTOs.Manipulate
         [Required]
         [StringLength(600, MinimumLength = 4, ErrorMessage = "MIN: 5, MAX: 600")]
         public string Image { get; set; } = string.Empty;
+        public int? ExpenseRating { get; set; } = 0;
         [Required]
         public DateTime PublishedAt { get; set; } = DateTime.Now;
         [Required]

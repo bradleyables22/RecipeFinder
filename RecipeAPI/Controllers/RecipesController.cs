@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RecipeAPI.Queries;
+using RecipeAPI.Recipes.Queries;
 using RfCommonLibrary;
-using RfCommonLibrary.DTOs.QueryDTOs;
+using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 
 namespace RecipeAPI.Controllers
 {

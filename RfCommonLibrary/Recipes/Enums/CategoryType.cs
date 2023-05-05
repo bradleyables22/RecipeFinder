@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace RfCommonLibrary.Enums
+namespace RfCommonLibrary.Recipes.Enums
 {
     public enum CategoryType
     {
-        [Display(Name = "None")]
+        [Display(Name = "For Everyone")]
         None,
         [Display(Name = "Vegan")]
         Vegan,

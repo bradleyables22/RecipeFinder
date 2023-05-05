@@ -1,6 +1,6 @@
-﻿using RfCommonLibrary.DTOs.Manipulate;
-using RfCommonLibrary.DTOs.QueryDTOs;
-using RfCommonLibrary.Enums;
+﻿using RfCommonLibrary.Recipes.DTOs.Manipulate;
+using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
+using RfCommonLibrary.Recipes.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RfCommonLibrary.DatabaseModels
+namespace RfCommonLibrary.Recipes.DatabaseModels
 {
     public class Ingredient
     {
         public Ingredient()
         {
-            
+
         }
         public Ingredient(AddEditIngredientDTO dto)
         {

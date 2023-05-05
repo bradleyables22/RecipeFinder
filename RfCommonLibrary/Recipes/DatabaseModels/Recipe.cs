@@ -1,5 +1,5 @@
-﻿using RfCommonLibrary.DTOs.Manipulate;
-using RfCommonLibrary.Enums;
+﻿using RfCommonLibrary.Recipes.DTOs.Manipulate;
+using RfCommonLibrary.Recipes.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,13 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RfCommonLibrary.DatabaseModels
+namespace RfCommonLibrary.Recipes.DatabaseModels
 {
     public class Recipe
     {
         public Recipe()
         {
-            
+
         }
         public Recipe(AddEditRecipeDTO dto)
         {
@@ -24,6 +24,7 @@ namespace RfCommonLibrary.DatabaseModels
             Image = dto.Image;
             Category = dto.Category;
             PublishedAt = dto.PublishedAt;
+            ExpenseRating = dto.ExpenseRating ?? 0;
         }
 
 
@@ -39,6 +40,7 @@ namespace RfCommonLibrary.DatabaseModels
         [Required]
         [MaxLength]
         public string Image { get; set; } = string.Empty;
+        public int? ExpenseRating { get; set; } = 0;
         [Required]
         public DateTime PublishedAt { get; set; } = DateTime.Now;
         [Required]

@@ -59,4 +59,9 @@
       <ProjectReference Include="..\RfCommonLibrary\RfCommonLibrary.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Recipes\Pages\" />
+      <Folder Include="wwwroot\JS\" />
+    </ItemGroup>
+
 </Project>

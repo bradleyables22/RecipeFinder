@@ -1,4 +1,4 @@
-﻿using RfCommonLibrary.DatabaseModels;
+﻿using RfCommonLibrary.Recipes.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RfCommonLibrary.DTOs.QueryDTOs
+namespace RfCommonLibrary.Recipes.DTOs.QueryDTOs
 {
     public class InstructionDTO
     {
         public InstructionDTO()
         {
-            
+
         }
         public InstructionDTO(Instruction? entity, bool includeParent = false)
         {

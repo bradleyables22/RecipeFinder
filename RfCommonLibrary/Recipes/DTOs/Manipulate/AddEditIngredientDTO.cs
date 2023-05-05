@@ -1,5 +1,4 @@
-﻿using RfCommonLibrary.DatabaseModels;
-using RfCommonLibrary.Enums;
+﻿using RfCommonLibrary.Recipes.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,8 +6,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RfCommonLibrary.Recipes.Enums;
 
-namespace RfCommonLibrary.DTOs.Manipulate
+namespace RfCommonLibrary.Recipes.DTOs.Manipulate
 {
     public class AddEditIngredientDTO
     {

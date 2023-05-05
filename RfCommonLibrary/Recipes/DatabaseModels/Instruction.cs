@@ -1,4 +1,4 @@
-﻿using RfCommonLibrary.DTOs.Manipulate;
+﻿using RfCommonLibrary.Recipes.DTOs.Manipulate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RfCommonLibrary.DatabaseModels
+namespace RfCommonLibrary.Recipes.DatabaseModels
 {
     public class Instruction
     {
         public Instruction()
         {
-            
+
         }
         public Instruction(AddEditInstructionDTO dto)
         {
@@ -34,10 +34,10 @@ namespace RfCommonLibrary.DatabaseModels
         [Required]
         [MaxLength(300)]
         public string Info { get; set; } = string.Empty;
-        
+
         [Required]
         [ForeignKey("Recipe")]
         public Guid RecipeID { get; set; }
-        public Recipe? Recipe { get; set; } 
+        public Recipe? Recipe { get; set; }
     }
 }

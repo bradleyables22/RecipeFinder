@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using RecipeFinderApp.Data;
+using RecipeFinderApp.Services;
 
 namespace RecipeFinderApp
 {
@@ -21,9 +21,6 @@ namespace RecipeFinderApp
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
-
-            builder.Services.AddSingleton<WeatherForecastService>();
-
             return builder.Build();
         }
     }

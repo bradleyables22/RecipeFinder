@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RfCommonLibrary.Enums
+namespace RfCommonLibrary.Recipes.Enums
 {
     public enum MeasurementType
     {

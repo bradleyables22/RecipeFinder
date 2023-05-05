@@ -1,0 +1,11 @@
+﻿@if (_loading)
+{
+    <Loading/>
+}
+else
+{
+    @foreach (var recipe in _recipes)
+    {
+        <RecipeOverview Recipe="recipe"/>
+    }
+}

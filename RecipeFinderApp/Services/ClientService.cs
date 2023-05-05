@@ -10,7 +10,7 @@ namespace RecipeFinderApp.Services
     {
         Task<Result<T>> TryGetAsync<T>(RestRequest request);
     }
-    public class ClientService
+    public class ClientService:IClientService
     {
         private readonly RestClient _client;
         public ClientService()
@@ -22,17 +22,12 @@ namespace RecipeFinderApp.Services
         {
             var response = await _client.ExecuteGetAsync(request);
 
-            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content))
+            if (!response.IsSuccessful)
                 return new Result<T> { }.Failure(response.ErrorMessage);
 
             var parsedObj = JsonConvert.DeserializeObject<T>(response.Content).ToResult();
 
-            var nullCheck = parsedObj.Ensure(x => x != null, "NULL");
-
-            if (nullCheck.IsFailure)
-                return nullCheck.Failure(nullCheck.Message);
-
-            else return nullCheck;
+            return parsedObj;
         }
     }
 }

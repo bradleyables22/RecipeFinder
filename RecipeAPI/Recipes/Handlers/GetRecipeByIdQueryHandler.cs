@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RecipeAPI.Data;
-using RecipeAPI.Queries;
+using RecipeAPI.Recipes.Queries;
 using RfCommonLibrary;
-using RfCommonLibrary.DTOs.QueryDTOs;
+using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 using RfCommonLibrary.Utilities;
 
-namespace RecipeAPI.Handlers
+namespace RecipeAPI.Recipes.Handlers
 {
     public class GetRecipeByIdQueryHandler : IRequestHandler<GetRecipeByIdQuery, Result<RecipeDTO?>>
     {
@@ -23,9 +23,9 @@ namespace RecipeAPI.Handlers
             {
                 var result = await _recipeContext.Recipes
                     .Where(x => x.RecipeID == request.id)
-                    .Include(x=>x.Ingredients)
-                    .Include(x=>x.Instructions)
-                    .Select(x=> new RecipeDTO(x,request.includeNested))
+                    .Include(x => x.Ingredients)
+                    .Include(x => x.Instructions)
+                    .Select(x => new RecipeDTO(x, request.includeNested))
                     .FirstOrDefaultAsync();
 
 
