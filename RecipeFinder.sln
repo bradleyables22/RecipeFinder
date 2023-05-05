@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RfCommonLibrary", "RfCommon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeAPI", "RecipeAPI\RecipeAPI.csproj", "{CF7C5E1A-1F8B-49B7-9162-0E600BAD9F62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeFinderApp", "RecipeFinderApp\RecipeFinderApp.csproj", "{A6138F64-D17E-4298-8244-E5E90B429518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeFinderApp", "RecipeFinderApp\RecipeFinderApp.csproj", "{A6138F64-D17E-4298-8244-E5E90B429518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

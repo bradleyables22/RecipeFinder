@@ -8,15 +8,17 @@ namespace RecipeFinderApp.Recipes.Components
 {
     public partial class RecipeList
     {
+        public bool _showModal { get; set; } = false;
         private bool _loading = true;
         private List<RecipeDTO> _recipes { get; set; }
-        
+
+        private Guid _selectedRecipe;
         private readonly IClientService _clientService;
-        
         public RecipeList()
         {
             _clientService = new ClientService();
             _recipes = new();
+            _selectedRecipe = Guid.Empty;
         }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -53,5 +55,11 @@ namespace RecipeFinderApp.Recipes.Components
 
             return nullOrEmptyCheck.Data;
         }
+
+        void NavidateToDetail(Guid id)
+        {
+            _nav.NavigateTo($"/Recipe/{id}");
+        }
     }
+    
 }

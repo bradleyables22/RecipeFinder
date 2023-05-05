@@ -1,4 +1,6 @@
-﻿@if (_loading)
+﻿@inject NavigationManager _nav;
+
+@if (_loading)
 {
     <Loading/>
 }
@@ -6,6 +8,8 @@ else
 {
     @foreach (var recipe in _recipes)
     {
-        <RecipeOverview Recipe="recipe"/>
+        <div @onclick="()=>NavidateToDetail(recipe.RecipeID)">
+            <RecipeOverview Recipe="recipe" />
+        </div>
     }
 }

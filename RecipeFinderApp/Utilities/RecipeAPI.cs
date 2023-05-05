@@ -12,5 +12,6 @@ namespace RecipeFinderApp.Utilities
 
         public const string Recipes = "Recipes";
         public const string AllRecipes = $"{Recipes}/GetAll";
+        public const string GetRecipe = $"{Recipes}/Get";
     }
 }

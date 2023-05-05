@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using RecipeFinderApp.Recipes.Controllers;
 using RecipeFinderApp.Services;
 
 namespace RecipeFinderApp
@@ -7,6 +8,7 @@ namespace RecipeFinderApp
     {
         public static MauiApp CreateMauiApp()
         {
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -14,7 +16,7 @@ namespace RecipeFinderApp
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
-
+            builder.Services.AddTransient<RecipeDetailController>();
             builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG

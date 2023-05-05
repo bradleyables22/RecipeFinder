@@ -1,0 +1,29 @@
+﻿@page "/Recipe/{ID}"
+@inject Controllers.RecipeDetailController _detailController;
+@if (_recipe == null)
+{
+    <Loading/>
+}
+else
+{
+    <p>@_recipe.Title</p>
+}
+
+
+@code
+{
+    [Parameter] public string ID { get; set; }
+
+    private RecipeDTO? _recipe { get; set; } = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        var result = await _detailController.GetRecipeByID(Guid.Parse(ID));
+
+        if (result.IsSuccess)
+            _recipe = result.Data;
+    }
+
+}

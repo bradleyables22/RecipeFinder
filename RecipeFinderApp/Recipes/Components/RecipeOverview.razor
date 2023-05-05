@@ -1,4 +1,6 @@
-﻿@if (_recipe == null)
+﻿@inject NavigationManager _nav;
+
+@if (_recipe == null)
 {
     <div class="Card" style="height:20%;">
         <div class="card-body bg-primary text-white fw-bold">
