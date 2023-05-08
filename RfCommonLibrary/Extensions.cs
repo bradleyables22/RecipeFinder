@@ -1,5 +1,4 @@
 ﻿using RfCommonLibrary.Recipes.DatabaseModels;
-using RfCommonLibrary.Recipes.DTOs.Manipulate;
 using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 using RfCommonLibrary.Utilities;
 using System.ComponentModel.DataAnnotations;
