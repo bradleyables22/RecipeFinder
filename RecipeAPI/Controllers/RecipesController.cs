@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RecipeAPI.Recipes.Commands;
 using RecipeAPI.Recipes.Queries;
 using RfCommonLibrary;
 using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
@@ -65,5 +65,59 @@ namespace RecipeAPI.Controllers
             else
                 return Ok(result.Data);
         }
+        /// <summary>
+        /// Add a recipe and its nested items.
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        [HttpPost("Create")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<RecipeDTO>> Create(RecipeDTO recipe) 
+        {
+            var result = await _mediator.Send(new AddRecipeCommand(recipe));
+
+            if (result.IsFailure)
+                return BadRequest(result.Message);
+            else
+                return Ok(result.Data);
+        }
+        /// <summary>
+        /// Update a recipe and it's nested items.
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        [HttpPut("Update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<RecipeDTO>> Update(RecipeDTO recipe)
+        {
+            var result = await _mediator.Send(new UpdateRecipeCommand(recipe));
+
+            if (result.IsFailure)
+                return BadRequest(result.Message);
+            else
+                return Ok(result.Data);
+        }
+
+        /// <summary>
+        /// Delete a given Recipe.
+        /// </summary>
+        /// <param name="recipeID"></param>
+        /// <returns></returns>
+        [HttpDelete("Delete")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<RecipeDTO>> Delete([FromHeader] Guid recipeID) 
+        {
+            var result = await _mediator.Send(new DeleteRecipeCommand(recipeID));
+            if (result.IsFailure)
+                return BadRequest(result.Message);
+            else
+                return Ok(result.Data);
+        } 
     }
 }

@@ -9,14 +9,32 @@ namespace RfCommonLibrary
 {
     public static class Extensions
     {
-        #region AddEdit Transforms
-        public static Recipe ToRecipe(this AddEditRecipeDTO dto) => new Recipe(dto);
-        public static Ingredient ToIngredient(this AddEditIngredientDTO dto) => new Ingredient(dto);
-        public static Instruction ToInstruction(this AddEditInstructionDTO dto) => new Instruction(dto);
-        #endregion
 
         #region DB Transforms
+        public static ICollection<Instruction>? ToInstructionCollection(this ICollection<InstructionDTO>? instructions)
+        {
+            if (instructions == null)
+                return null;
 
+            var dtos = new List<Instruction>();
+            foreach (var instruction in instructions)
+            {
+                dtos.Add(new Instruction(instruction));
+            }
+            return dtos;
+        }
+        public static ICollection<Ingredient>? ToIngredientCollection(this ICollection<IngredientDTO>? ingredients)
+        {
+            if (ingredients == null)
+                return null;
+
+            var dtos = new List<Ingredient>();
+            foreach (var ingredient in ingredients)
+            {
+                dtos.Add(new Ingredient(ingredient));
+            }
+            return dtos;
+        }
         public static ICollection<InstructionDTO>? FromInstructionCollection(this ICollection<Instruction>? instructions)
         {
             if (instructions == null)

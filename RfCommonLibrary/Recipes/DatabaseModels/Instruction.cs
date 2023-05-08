@@ -1,4 +1,5 @@
 ﻿using RfCommonLibrary.Recipes.DTOs.Manipulate;
+using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace RfCommonLibrary.Recipes.DatabaseModels
         {
 
         }
-        public Instruction(AddEditInstructionDTO dto)
+        public Instruction(InstructionDTO dto)
         {
             InstructionID = dto.InstructionID;
             Title = dto.Title;

@@ -3,11 +3,6 @@ using RecipeApp.Utilities;
 using RestSharp;
 using RfCommonLibrary;
 using RfCommonLibrary.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeApp.Services
 {

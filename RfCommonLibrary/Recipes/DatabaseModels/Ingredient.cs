@@ -17,14 +17,6 @@ namespace RfCommonLibrary.Recipes.DatabaseModels
         {
 
         }
-        public Ingredient(AddEditIngredientDTO dto)
-        {
-            IngredientID = dto.IngredientID;
-            Name = dto.Name;
-            Amount = dto.Amount;
-            Unit = dto.Unit;
-            RecipeID = dto.RecipeID;
-        }
         public Ingredient(IngredientDTO dto)
         {
             IngredientID = dto.IngredientID;

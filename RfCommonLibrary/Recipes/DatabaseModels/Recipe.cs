@@ -1,12 +1,7 @@
-﻿using RfCommonLibrary.Recipes.DTOs.Manipulate;
+﻿
+using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 using RfCommonLibrary.Recipes.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RfCommonLibrary.Recipes.DatabaseModels
 {
@@ -16,15 +11,17 @@ namespace RfCommonLibrary.Recipes.DatabaseModels
         {
 
         }
-        public Recipe(AddEditRecipeDTO dto)
+        public Recipe(RecipeDTO dto)
         {
             RecipeID = dto.RecipeID;
             Title = dto.Title;
             Description = dto.Description;
             Image = dto.Image;
-            Category = dto.Category;
+            ExpenseRating = dto.ExpenseRating;
             PublishedAt = dto.PublishedAt;
-            ExpenseRating = dto.ExpenseRating ?? 0;
+            Category = dto.Category;
+            Ingredients = dto.Ingredients.ToIngredientCollection();
+            Instructions = dto.Instructions.ToInstructionCollection();
         }
 
 
