@@ -13,7 +13,6 @@ namespace RfCommonLibrary.Utilities
         public bool IsFailure => !IsSuccess;
         public T? Data { get; set; }
         public string? Message { get; set; }
-
-        public Result<T> Failure(string error) => new Result<T> { IsSuccess = false, Data = default, Message = error };
+        public Result<T> Failure(string error = "error") => new Result<T> { IsSuccess = false, Data = default, Message = error };
     }
 }

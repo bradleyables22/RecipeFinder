@@ -19,7 +19,7 @@ namespace RfCommonLibrary
 
         public static ICollection<InstructionDTO>? FromInstructionCollection(this ICollection<Instruction>? instructions)
         {
-            if ((instructions == null) || (instructions.Count() == 0))
+            if (instructions == null)
                 return null;
 
             var dtos = new List<InstructionDTO>();
@@ -32,7 +32,7 @@ namespace RfCommonLibrary
         public static ICollection<IngredientDTO>? FromIngredientCollection(this ICollection<Ingredient>? ingredients)
         {
 
-            if ((ingredients == null)||(ingredients.Count() ==0))
+            if (ingredients == null)
                 return null;
 
             var dtos = new List<IngredientDTO>();

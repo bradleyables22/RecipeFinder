@@ -34,14 +34,13 @@ namespace RfCommonLibrary.Recipes.DTOs.QueryDTOs
             }
         }
 
-        [Required]
         public Guid RecipeID { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
         public int? ExpenseRating { get; set; } = 0;
         public DateTime PublishedAt { get; set; } = DateTime.Now;
-        public CategoryType Category { get; set; } = CategoryType.None;
+        public CategoryType Category { get; set; } = CategoryType.Everyone;
         public ICollection<IngredientDTO>? Ingredients { get; set; }
         public ICollection<InstructionDTO>? Instructions { get; set; }
 

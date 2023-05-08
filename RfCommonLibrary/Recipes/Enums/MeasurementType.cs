@@ -37,7 +37,7 @@ namespace RfCommonLibrary.Recipes.Enums
         [Display(Name = "Dozen")]
         Dozen,
         [Display(Name = "Piece")]
-        Peice,
+        Piece,
         [Display(Name = "Dash")]
         Dash
     }

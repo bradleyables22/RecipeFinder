@@ -1,0 +1,32 @@
+﻿@inject NavigationManager _nav;
+@inject IJSRuntime _js
+@if (_loading)
+{
+    <Loading/>
+}
+else
+{
+    <div class="slide-in mb-5">
+        @foreach (var recipe in _recipes)
+        {
+            <div @onclick="()=>NavigateToDetail(recipe.RecipeID)">
+                <RecipeOverview Recipe="recipe" />
+            </div>
+        }
+    </div>
+     <div class="row fixed-bottom bg-black p-2 text-center">
+         <div class="col-sm-6 text-secondary">
+            <span>
+                <InputSelect @bind-Value="selectedCat">
+                    @foreach (var cat in Enum.GetValues(typeof(CategoryType)))
+                    {
+                        <option value="@cat">@cat</option>
+                    }
+                </InputSelect>
+            </span>
+         </div>
+        <div class="col-sm-6 text-secondary">
+            <InputText @bind-Value="searchText" placeholder="Search.." style="width:75%"/>
+        </div>
+     </div>
+}

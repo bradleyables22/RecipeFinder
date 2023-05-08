@@ -11,7 +11,7 @@ namespace RfCommonLibrary.Recipes.Enums
     public enum CategoryType
     {
         [Display(Name = "For Everyone")]
-        None,
+        Everyone,
         [Display(Name = "Vegan")]
         Vegan,
         [Display(Name = "Vegitarian")]

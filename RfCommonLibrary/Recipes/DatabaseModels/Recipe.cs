@@ -44,7 +44,7 @@ namespace RfCommonLibrary.Recipes.DatabaseModels
         [Required]
         public DateTime PublishedAt { get; set; } = DateTime.Now;
         [Required]
-        public CategoryType Category { get; set; } = CategoryType.None;
+        public CategoryType Category { get; set; } = CategoryType.Everyone;
         public ICollection<Ingredient>? Ingredients { get; set; }
         public ICollection<Instruction>? Instructions { get; set; }
     }

@@ -21,7 +21,7 @@ namespace RfCommonLibrary.Recipes.DTOs.Manipulate
         [Required]
         public DateTime PublishedAt { get; set; } = DateTime.Now;
         [Required]
-        public CategoryType Category { get; set; } = CategoryType.None;
+        public CategoryType Category { get; set; } = CategoryType.Everyone;
 
     }
 }
