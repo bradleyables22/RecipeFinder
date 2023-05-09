@@ -1,7 +1,6 @@
 ﻿using ManagerApp.Models;
 using ManagerApp.Services;
 using ManagerApp.Utilities;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
@@ -19,6 +18,7 @@ namespace ManagerApp.Controllers
             _clientService = client;
         }
 
+        
         public async Task<IActionResult> Index()
         {
 
@@ -31,13 +31,74 @@ namespace ManagerApp.Controllers
             }
             recipeDTOs = result.Data;
 
+            if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
+            }
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
+            TempData.Clear();
             return View(new IndexViewModel { Recipes = recipeDTOs});
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<IActionResult> Index(string id)
         {
-            return View();
+
+            RestRequest request = new RestRequest(RecipeAPI.DeleteRecipe, Method.Delete);
+            request.AddHeader("recipeID", id);
+            
+            List<RecipeDTO> recipeDTOs = new();
+            var result = await _clientService.TryDeleteAsync<RecipeDTO>(request);
+            if (result.IsFailure)
+                TempData["ErrorMessage"] = "Delete Failure";
+            else
+                TempData["SuccessMessage"] = "Delete Successful";
+
+            return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+            RestRequest request = new RestRequest(RecipeAPI.GetRecipe);
+            request.AddHeader("recipeID", id);
+            request.AddHeader("includeNested", true);
+            RecipeDTO dto = new();
+            var result = await _clientService.TryGetAsync<RecipeDTO>(request);
+            if (result.IsFailure)
+            {
+                return NotFound();
+            }
+            if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
+            }
+            TempData.Clear();
+            
+            dto = result.Data;
+
+            return View(new EditViewModel { Recipe = dto });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(RecipeDTO recipe)
+        {
+            RestRequest request = new RestRequest(RecipeAPI.UpdateRecipe);
+            request.AddBody(recipe);
+            RecipeDTO dto = new();
+            var result = await _clientService.TryGetAsync<RecipeDTO>(request);
+            if (result.IsFailure) 
+            {
+                TempData["ErrorMessage"] = "Update Failure";
+                return RedirectToAction("Edit", new { id = recipe.RecipeID.ToString() });
+            }
+            TempData["SuccessMessage"] = "Update Successful";
+            return RedirectToAction("Index");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

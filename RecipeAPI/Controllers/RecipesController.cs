@@ -111,9 +111,9 @@ namespace RecipeAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<RecipeDTO>> Delete([FromHeader] Guid recipeID) 
+        public async Task<ActionResult<RecipeDTO>> Delete([FromHeader] string recipeID) 
         {
-            var result = await _mediator.Send(new DeleteRecipeCommand(recipeID));
+            var result = await _mediator.Send(new DeleteRecipeCommand(Guid.Parse(recipeID)));
             if (result.IsFailure)
                 return BadRequest(result.Message);
             else

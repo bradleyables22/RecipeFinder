@@ -6,27 +6,17 @@
 }
 else
 {
-    <div class="slide-in mb-5">
+    <div class="slide-in list-view" style="margin-bottom:100px;">
         @foreach (var recipe in _recipes)
         {
-            <div @onclick="()=>NavigateToDetail(recipe.RecipeID)">
+            <div @onclick="()=>NavigateToDetail(recipe.RecipeID)" class="mb-2">
                 <RecipeOverview Recipe="recipe" />
             </div>
         }
     </div>
      <div class="row fixed-bottom bg-black p-2 text-center">
-         <div class="col-sm-6 text-secondary">
-            <span>
-                <InputSelect @bind-Value="selectedCat">
-                    @foreach (var cat in Enum.GetValues(typeof(CategoryType)))
-                    {
-                        <option value="@cat">@cat</option>
-                    }
-                </InputSelect>
-            </span>
-         </div>
         <div class="col-sm-6 text-secondary">
-            <InputText @bind-Value="searchText" placeholder="Search.." style="width:75%"/>
+            <InputText class="form-control-plaintext" @bind-Value="searchText" placeholder="Search.." style="width:75%" @oninput="@((args) => FilterRecipes(args.Value.ToString()))" />
         </div>
      </div>
 }

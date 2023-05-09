@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using RecipeAPI.Data;
 using RecipeAPI.Recipes.Commands;
 using RfCommonLibrary;
@@ -23,7 +22,7 @@ namespace RecipeAPI.Recipes.Handlers
                 var entity = new Recipe(request.dto);
                 _context.Add(entity);
                 var result = await _context.SaveChangesAsync();
-                if (result == 1)
+                if (result > 1)
                     return new RecipeDTO(entity, true).ToResult();
                 else
                     return new Result<RecipeDTO>().Failure("Failed to Add entity.");

@@ -34,9 +34,9 @@ namespace RecipeApp.Recipes.Components
             }
             else
             {
-                FilterCategory();
-                FilterRecipes();
-                StateHasChanged();
+                //FilterCategory();
+               // FilterRecipes();
+                
             }
         }
 
@@ -59,29 +59,24 @@ namespace RecipeApp.Recipes.Components
             return nullOrEmptyCheck.Data;
 
         }
-        void NavigateToDetail(Guid id)
+        async void NavigateToDetail(Guid id)
         {
             _nav.NavigateTo($"/Recipe/{id}");
         }
-        void FilterCategory() 
+        
+        void FilterRecipes(string text) 
         {
-            if (selectedCat != RfCommonLibrary.Recipes.Enums.CategoryType.Everyone)
+            if (!string.IsNullOrEmpty(text.Trim()))
             {
-                _recipes = _recipes.Where(x => x.Category == selectedCat).ToList();
+                _recipes = _recipes.Where(x => x.Title.ToUpper().Contains(text.ToUpper().Trim())).ToList();
+                StateHasChanged();
             }
             else 
             {
-                _recipes = _originalRecipes;
+                _recipes = _originalRecipes; 
+                StateHasChanged();
             }
-        }
-        void FilterRecipes() 
-        {
-            if (!string.IsNullOrEmpty(searchText.Trim()))
-            {
-                _recipes = _recipes.Where(x => x.Title.StartsWith(searchText.Trim())).ToList();
-            }
-            else 
-                FilterCategory();
+                
         }
     }
 }

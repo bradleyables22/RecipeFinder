@@ -114,22 +114,6 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.fade-alert {
-    animation-name: fadeOut;
-    animation-duration: 3s;
-    animation-fill-mode: forwards;
-}
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-
 hr {
     margin: 1rem 0;
     color: inherit;
@@ -605,7 +589,7 @@ progress {
 }
 
     .blockquote-footer::before {
-        content: "��"
+        content: "— "
     }
 
 .img-fluid {
