@@ -29,14 +29,9 @@ namespace RecipeApp.Recipes.Components
             {
                 _originalRecipes = await GetAllRecipesAsync();
                 _recipes = _originalRecipes;
+                await Task.Delay(TimeSpan.FromSeconds(3)); //to see animation
                 _loading = false;
                 StateHasChanged();
-            }
-            else
-            {
-                //FilterCategory();
-               // FilterRecipes();
-                
             }
         }
 

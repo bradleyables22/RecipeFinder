@@ -1,4 +1,13 @@
-﻿<div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-</div>
+﻿@inject IJSRuntime _js
+<div id="circle" class="bg-primary" style="position: absolute;left:0;top:-20px; height:20px;width:400px;"></div>
+
+@code{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        await _js.InvokeVoidAsync("moveCircle","#circle");
+
+    }
+
+}
 
