@@ -8,69 +8,69 @@
 }
 else
 {
-    <div style="width:100%; height:250px; background-image:url(@_recipe.Image); background-position:center;background-repeat:no-repeat;background-size:cover;"></div>
-    <div class="row mt-2">
-        <div class="col-12 text-center text-white">
-            <h3 class="fw-bolder">@_recipe.Title</h3>
-        </div>
-    </div>
-    <div class="px-4">
-        <div class="row">
-            <div class="col-12">
-                @if ((_recipe.ExpenseRating != null) && (_recipe.ExpenseRating > 0))
-                {
-                    @foreach (var ratingCount in Enumerable.Range(1, (int)_recipe.ExpenseRating))
-                    {
-                        <span class="oi oi-dollar fw-bold text-primary m-2"></span>
-                    }
-                }
-            </div>
-        </div>
+    <div class="slide-left" style="position:absolute;top:0;">
+        <div style="width:100%; height:250px; background-image:url(@_recipe.Image); background-position:center;background-repeat:no-repeat;background-size:cover;"></div>
         <div class="row mt-2">
-            <div class="col-12 text-start text-white">
-                <p class="fw-bolder"><span class="text-secondary">Category:</span> <span class="text-primary"> @_recipe.Category.GetDisplayName()</span></p>
+            <div class="col-12 text-center text-white">
+                <h3 class="fw-bolder">@_recipe.Title</h3>
             </div>
         </div>
-        <div class="row mt-auto">
-            <div class="col-12 text-white fw-bolder">
-                <p class="text-secondary">@_recipe.Description</p>
-            </div>
-        </div>
-        @if (_recipe.Ingredients != null)
-        {
-            <div class="card mb-3">
-                <div class="card-header text-center fw-bolder bg-black">
-                    <h5>Ingredients</h5>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        @foreach (var ingredient in _recipe.Ingredients)
-                        {
-                            <li>
-                                <span>@ingredient.Amount @ingredient.Unit @ingredient.Name</span>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        }
-        @if (_recipe.Instructions != null)
-        {
-            <div class="card mb-5">
-                <div class="card-header text-center fw-bolder bg-black">
-                    <h5>Instructions</h5>
-                </div>
-                <div class="card-body">
-                    @foreach (var instruction in _recipe.Instructions.OrderBy(x => x.OrderNumber))
+        <div class="px-4">
+            <div class="row">
+                <div class="col-12">
+                    @if ((_recipe.ExpenseRating != null) && (_recipe.ExpenseRating > 0))
                     {
-                        <p><span class="fw-bold">@instruction.OrderNumber) </span><span> @instruction.Info</span></p>
+                        @foreach (var ratingCount in Enumerable.Range(1, (int)_recipe.ExpenseRating))
+                        {
+                            <span class="oi oi-dollar fw-bold text-primary m-2"></span>
+                        }
                     }
                 </div>
             </div>
-        }
+            <div class="row mt-2">
+                <div class="col-12 text-start text-white">
+                    <p class="fw-bolder"><span class="text-secondary">Category:</span> <span class="text-primary"> @_recipe.Category.GetDisplayName()</span></p>
+                </div>
+            </div>
+            <div class="row mt-auto">
+                <div class="col-12 text-white fw-bolder">
+                    <p class="text-secondary">@_recipe.Description</p>
+                </div>
+            </div>
+            @if (_recipe.Ingredients != null)
+            {
+                <div class="card mb-3">
+                    <div class="card-header text-center fw-bolder bg-black">
+                        <h5>Ingredients</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            @foreach (var ingredient in _recipe.Ingredients)
+                            {
+                                <li>
+                                    <span>@ingredient.Amount @ingredient.Unit @ingredient.Name</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+            @if (_recipe.Instructions != null)
+            {
+                <div class="card mb-5">
+                    <div class="card-header text-center fw-bolder bg-black">
+                        <h5>Instructions</h5>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var instruction in _recipe.Instructions.OrderBy(x => x.OrderNumber))
+                        {
+                            <p><span class="fw-bold">@instruction.OrderNumber) </span><span> @instruction.Info</span></p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-    
-
 }
 
 <div class="row fixed-bottom bg-black p-2">

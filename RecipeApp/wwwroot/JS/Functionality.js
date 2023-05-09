@@ -1,15 +1,17 @@
-﻿
-function moveCircle(elementSelector) {
-    var $circle = $(elementSelector);
+﻿function moveBar(elementSelector) {
+    var $bar = $(elementSelector);
     var speed = 1000;
 
     setInterval(function () {
-        $circle.animate({
+        $bar.animate({
             "top": "+=800"
         }, speed, function () {
-            $circle.animate({
+            $bar.animate({
                 "top": "-=820"
             }, speed);
         });
     }, speed * 2);
+}
+function slideIn(elementSelector) {
+    $(elementSelector).slideDown(2000);
 }

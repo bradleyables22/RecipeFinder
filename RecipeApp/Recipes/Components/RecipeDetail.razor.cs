@@ -16,11 +16,16 @@ namespace RecipeApp.Recipes.Components
             await base.OnInitializedAsync();
 
             var result = await _js.InvokeAsync<RecipeDTO>("getRecipe", ID);
-
             var nullCheck = result.ToResult()
                 .Ensure(x => x != null, "NULL");
-            if (nullCheck.IsSuccess)
+            if (nullCheck.IsSuccess) 
+            {
+                
+                await _js.InvokeVoidAsync("slideIn", "#detail");
                 _recipe = nullCheck.Data;
+            }
+                
+
         }
 
         void GoHome()

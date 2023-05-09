@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RecipeAPI.Data;
 using RecipeAPI.Recipes.Commands;
 using RfCommonLibrary;
@@ -20,13 +21,20 @@ namespace RecipeAPI.Recipes.Handlers
         {
             try
             {
-                var entity = new Recipe(request.dto);
-                _context.Update(entity);
-                var result = await _context.SaveChangesAsync();
-                if (result > 0)
-                    return new RecipeDTO(entity, true).ToResult();
-                else
-                    return new Result<RecipeDTO>().Failure("Failed to update entity.");
+                try
+                {
+                    var entity = new Recipe(request.dto);
+                    _context.Update(entity);
+                    var result = await _context.SaveChangesAsync();
+                    if (result > 0)
+                        return new RecipeDTO(entity, true).ToResult();
+                    else
+                        return new Result<RecipeDTO>().Failure("Failed to update entity.");
+                }
+                catch (DbUpdateException e)
+                {
+                    return new Result<RecipeDTO?>().Failure($"Save Failure-{e.Message}");
+                }
             }
             catch (Exception e)
             {

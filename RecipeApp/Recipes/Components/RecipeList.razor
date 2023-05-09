@@ -6,7 +6,7 @@
 }
 else
 {
-    <div class="slide-in list-view" style="margin-bottom:75px;">
+    <div class="slide-in" style="margin-bottom:75px;">
         @foreach (var recipe in _recipes)
         {
             <div @onclick="()=>NavigateToDetail(recipe.RecipeID)" class="mb-3">
