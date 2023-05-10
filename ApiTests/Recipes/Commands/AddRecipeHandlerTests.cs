@@ -4,15 +4,9 @@ using Moq.EntityFrameworkCore;
 using RecipeAPI.Data;
 using RecipeAPI.Recipes.Commands;
 using RecipeAPI.Recipes.Handlers;
-using RecipeAPI.Recipes.Queries;
 using RfCommonLibrary.Recipes.DatabaseModels;
 using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 using RfCommonLibrary.Recipes.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApiTests.Recipes.Commands
 {
@@ -27,7 +21,7 @@ namespace ApiTests.Recipes.Commands
             contextMock.Setup(x => x.Recipes)
                 .ReturnsDbSet(recipes);
 
-            var newRecipe = new Recipe
+            var newRecipe = new RecipeDTO
             {
                 RecipeID = Guid.Parse("01000000-0000-0000-0000-000000000001"),
                 Title = "testsss",
@@ -36,9 +30,9 @@ namespace ApiTests.Recipes.Commands
                 Category = CategoryType.Vegan,
                 ExpenseRating = 1,
                 PublishedAt = DateTime.Now,
-                Ingredients = new List<Ingredient> 
+                Ingredients = new List<IngredientDTO> 
                 {
-                    new Ingredient
+                    new IngredientDTO
                     {
                         IngredientID = Guid.NewGuid(),
                         RecipeID = Guid.Parse("01000000-0000-0000-0000-000000000001"),
@@ -47,9 +41,9 @@ namespace ApiTests.Recipes.Commands
                         Unit = MeasurementType.Gram
                     }
                 },
-                Instructions = new List<Instruction>
+                Instructions = new List<InstructionDTO>
                 {
-                    new Instruction
+                    new InstructionDTO
                     {
                         InstructionID = Guid.NewGuid(),
                         RecipeID = Guid.Parse("01000000-0000-0000-0000-000000000001"),
@@ -60,9 +54,9 @@ namespace ApiTests.Recipes.Commands
                 }
             };
 
-            RecipeDTO dto = new RecipeDTO(newRecipe, true);
+            ;
 
-            var command = new AddRecipeCommand(dto);
+            var command = new AddRecipeCommand(newRecipe);
 
             var handler = new AddRecipeHandler(contextMock.Object);
 
