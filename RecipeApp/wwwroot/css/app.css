@@ -46,6 +46,9 @@ html {
         transform: translateX(0);
     }
 }
+
+
+
 h1:focus {
     outline: none;
 }

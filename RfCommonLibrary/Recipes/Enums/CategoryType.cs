@@ -14,8 +14,8 @@ namespace RfCommonLibrary.Recipes.Enums
         Everyone,
         [Display(Name = "Vegan")]
         Vegan,
-        [Display(Name = "Vegitarian")]
-        Vegitarian,
+        [Display(Name = "Vegetarian")]
+        Vegetarian,
         [Display(Name = "Dairy-Free")]
         NonDairy,
         [Display(Name = "Kosher")]

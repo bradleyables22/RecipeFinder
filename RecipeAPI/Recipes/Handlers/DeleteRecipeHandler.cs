@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RecipeAPI.Data;
 using RecipeAPI.Recipes.Commands;
 using RfCommonLibrary;
@@ -19,16 +20,24 @@ namespace RecipeAPI.Recipes.Handlers
         {
             try
             {
-                var entity = await _context.Recipes.FindAsync(request.id);
-                if (entity == null)
-                    return new Result<RecipeDTO?>().Failure($"Not Found.");
+                try
+                {
+                    var entity = await _context.Recipes.Where(x=>x.RecipeID == request.id).FirstOrDefaultAsync();
+                    if (entity == null)
+                        return new Result<RecipeDTO?>().Failure($"Not Found.");
 
-                _context.Recipes.Remove(entity);
-                await _context.SaveChangesAsync();
+                    _context.Recipes.Remove(entity);
+                    await _context.SaveChangesAsync();
 
-                RecipeDTO? dto = new RecipeDTO(entity,false);
+                    RecipeDTO? dto = new RecipeDTO(entity, false);
 
-                return dto.ToResult();
+                    return dto.ToResult();
+                }
+                catch ( DbUpdateException e)
+                {
+                    return new Result<RecipeDTO?>().Failure($"{e.HResult}-{e.Message}");
+                }
+               
             }
             catch (Exception e)
             {

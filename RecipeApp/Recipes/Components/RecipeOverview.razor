@@ -2,15 +2,15 @@
 
 @if (Recipe == null)
 {
-    <div class="Card" style="height:20%;">
+    <div class="Card" style="height:300px;">
         <div class="card-body">
-            @*<p class="visually-hidden"> loading...</p>*@
+            <p class="visually-hidden"> loading...</p>
         </div>
     </div>
 }
 else
 {
-    <div class="card shadow-lg" style="height:300px;">
+    <div class="card shadow-lg border-hovered" style="height:300px;">
         <div class="card-header text-center align-middle bg-black text-secondary">
             <h2 class="fw-bolder">@Recipe.Title</h2>
         </div>

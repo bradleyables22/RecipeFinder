@@ -4532,7 +4532,13 @@ textarea.form-control-lg {
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
     border-radius: var(--bs-card-border-radius)
 }
+.border-hovered {
 
+}
+
+    .border-hovered:hover {
+        border: 2px solid var(--bs-primary);
+    }
     .card > hr {
         margin-right: 0;
         margin-left: 0
