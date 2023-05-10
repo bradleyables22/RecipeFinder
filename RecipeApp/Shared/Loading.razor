@@ -1,12 +1,12 @@
 ﻿@inject IJSRuntime _js
-<div id="bar" class="bg-primary" style="position: absolute;left:0;top:-20px; height:20px;width:400px;"></div>
-
+<div id="topbar" class="bg-primary" style="position: absolute;left:0;top:-20px; height:20px;width:400px;"></div>
+<div id="bottombar" class="bg-primary" style="position: absolute;left:0;top:800px; height:20px;width:400px;"></div>
 @code{
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        await _js.InvokeVoidAsync("moveBar","#bar");
-
+        await _js.InvokeVoidAsync("moveBar","#topbar");
+        await _js.InvokeVoidAsync("oppositeMoveBar", "#bottombar");
     }
 
 }
