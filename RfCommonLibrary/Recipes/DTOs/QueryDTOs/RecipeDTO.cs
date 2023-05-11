@@ -1,13 +1,7 @@
 ﻿using RfCommonLibrary.Recipes.DatabaseModels;
 using RfCommonLibrary.Recipes.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RfCommonLibrary.Recipes.DTOs.QueryDTOs
 {
@@ -44,7 +38,8 @@ namespace RfCommonLibrary.Recipes.DTOs.QueryDTOs
         [Required]
         [StringLength(600, MinimumLength = 4, ErrorMessage = "MIN: 5, MAX: 600")]
         public string Image { get; set; } = string.Empty;
-        public int? ExpenseRating { get; set; } = 0;
+        [Range(1,5, ErrorMessage ="Outside of Range 1:5")]
+        public int? ExpenseRating { get; set; }
         [Required]
         public DateTime PublishedAt { get; set; } = DateTime.Now;
         [Required]

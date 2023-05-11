@@ -32,7 +32,7 @@ namespace RfCommonLibrary.Recipes.DatabaseModels
         [MaxLength(25)]
         public string Name { get; set; } = string.Empty;
         [Required]
-        public int Amount { get; set; } = 0;
+        public double Amount { get; set; } = 0;
         [Required]
         public MeasurementType Unit { get; set; } = MeasurementType.Unknown;
 
