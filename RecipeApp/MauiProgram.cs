@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Extensions.Logging;
+using RecipeApp.Models;
 using RecipeApp.Services;
 
 namespace RecipeApp
@@ -15,6 +16,7 @@ namespace RecipeApp
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
+            builder.Services.AddSingleton<StateManager>();
             builder.Services.AddTransient<IClientService, ClientService>();
             builder.Services.AddMauiBlazorWebView();
 

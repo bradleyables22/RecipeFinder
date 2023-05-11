@@ -1,22 +1,61 @@
-﻿@inject NavigationManager _nav;
+﻿@using RecipeApp.Models;
+@using RecipeApp.Services;
+@inject NavigationManager _nav;
+@inject StateManager _state
 @inject IJSRuntime _js
+@inject IClientService _clientService
 @if (_loading)
 {
     <Loading/>
 }
 else
 {
-    <div class="slide-in" style="margin-bottom:75px;">
+    
+    @if (_showSettings)
+    {
+        <div class=" row fixed-top bg-black p-2">
+            <div class="col-8">
+                <InputSelect class="form-control" id="categoryType" @bind-Value="selectedCat">
+                    @foreach (var category in Enum.GetValues(typeof(CategoryType)))
+                    {
+                        <option value="@category">@((category as Enum).GetDisplayName())</option>
+                    }
+                    
+                </InputSelect>
+            </div>
+            
+            <div class="col-4 d-grid align-items-center text-start">
+                <div class="btn btn-sm btn-success" @onclick="ToggleSettings"><span class="oi oi-check"></span></div>
+            </div>
+        </div>
+    }
+    <div class="slide-in" style="margin-bottom:100px;">
         @foreach (var recipe in _recipes)
         {
-            <div @onclick="()=>NavigateToDetail(recipe.RecipeID)" class="mb-3">
+            <div class="slide-in mb-3" @onclick="()=>NavigateToDetail(recipe.RecipeID)">
                 <RecipeOverview Recipe="recipe" />
             </div>
         }
     </div>
      <div class="row fixed-bottom bg-black p-2 text-center">
-         <div class="col-12">
-            <InputText class="form-control-plaintext" @bind-Value="searchText" placeholder="Search.." style="width:75%" @oninput="@((args) => FilterRecipes(args.Value.ToString()))" />
-        </div>
+        @if (!_showSettings)
+        {
+            <div class="row">
+                <div class="col-2 text-start d-grid align-items-center">
+                    <span class="oi oi-cog" @onclick="ToggleSettings"></span>
+                    </div>
+                <div class="col-10">
+                    <InputText class="form-control-plaintext" @bind-Value="searchText" placeholder="Search.." style="width:75%" @oninput="@((args) => FilterRecipes(args.Value.ToString()))" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-12">
+                    <InputText class="form-control-plaintext" @bind-Value="searchText" placeholder="Search.." style="width:75%" @oninput="@((args) => FilterRecipes(args.Value.ToString()))" />
+                </div>
+            </div>
+        }
      </div>
 }

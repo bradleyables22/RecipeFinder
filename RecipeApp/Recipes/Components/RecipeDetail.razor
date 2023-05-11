@@ -64,7 +64,8 @@ else
                     <div class="card-body">
                         @foreach (var instruction in _recipe.Instructions.OrderBy(x => x.OrderNumber))
                         {
-                            <p><span class="fw-bold">@instruction.OrderNumber) </span><span> @instruction.Info</span></p>
+                            <p><span class="fw-bold">@instruction.OrderNumber) @instruction.Title</span><br/>
+                                <span> @instruction.Info</span></p>
                         }
                     </div>
                 </div>

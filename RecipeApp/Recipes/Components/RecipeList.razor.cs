@@ -3,38 +3,60 @@ using RecipeApp.Utilities;
 using RestSharp;
 using RfCommonLibrary.Recipes.DTOs.QueryDTOs;
 using RfCommonLibrary;
-using Microsoft.JSInterop;
 using RfCommonLibrary.Recipes.Enums;
 
 namespace RecipeApp.Recipes.Components
 {
     public partial class RecipeList
     {
-        public bool _showModal { get; set; } = false;
+        bool _showSettings = false;
         private bool _loading = true;
         private List<RecipeDTO> _recipes { get; set; } = new();
         private List<RecipeDTO> _originalRecipes { get; set; } = new();
         public CategoryType selectedCat { get; set; } = CategoryType.Everyone;
+        
         public string searchText { get; set; } = string.Empty;
-        private readonly IClientService _clientService;
-        public RecipeList()
-        {
-            _clientService = new ClientService();
-        }
+        
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
 
             if (firstRender)
             {
-                _originalRecipes = await GetAllRecipesAsync();
-                _recipes = _originalRecipes;
-                await Task.Delay(TimeSpan.FromSeconds(3)); //to see animation
+                selectedCat = _state.CategoryType;
+                if (_state.Recipes != null)
+                    _originalRecipes = _state.Recipes;
+                else 
+                {
+                    _originalRecipes = await GetAllRecipesAsync();
+                    await Task.Delay(TimeSpan.FromSeconds(3)); //to see animation
+                }
+                    
+                if (selectedCat != CategoryType.Everyone)
+                    _recipes = _originalRecipes.Where(x => x.Category == selectedCat).ToList();
+                else
+                    _recipes = _originalRecipes;
+                
                 _loading = false;
                 StateHasChanged();
             }
-        }
+            else
+            {
+                _state.Recipes = _recipes;
+                _state.CategoryType = selectedCat;
+                if (selectedCat != CategoryType.Everyone)
+                    _recipes = _originalRecipes .Where(x => x.Category == selectedCat).ToList();
+                else
+                    _recipes = _originalRecipes;
+            }
 
+
+        }
+        public void ToggleSettings()
+        {
+            _showSettings = !_showSettings;
+            StateHasChanged();
+        }
         async Task<List<RecipeDTO>> GetAllRecipesAsync()
         {
             RestRequest request = new RestRequest(RecipeAPI.AllRecipes);
@@ -64,14 +86,9 @@ namespace RecipeApp.Recipes.Components
             if (!string.IsNullOrEmpty(text.Trim()))
             {
                 _recipes = _recipes.Where(x => x.Title.ToUpper().Contains(text.ToUpper().Trim())).ToList();
-                StateHasChanged();
-            }
-            else 
-            {
-                _recipes = _originalRecipes; 
-                StateHasChanged();
-            }
                 
+            }
+            StateHasChanged();
         }
     }
 }

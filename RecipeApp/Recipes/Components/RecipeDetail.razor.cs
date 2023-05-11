@@ -8,7 +8,6 @@ namespace RecipeApp.Recipes.Components
     public partial class RecipeDetail
     {
         [Parameter] public string ID { get; set; }
-
         private RecipeDTO? _recipe { get; set; } = null;
 
         protected override async Task OnInitializedAsync()
