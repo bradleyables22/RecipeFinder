@@ -65,7 +65,7 @@ namespace RecipeApp.Recipes.Components
                 divStatus = "pointer-events: none;";
             }
             else
-                divStatus = string.emp;
+                divStatus = string.Empty;
                 
 
             StateHasChanged();
