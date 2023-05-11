@@ -9,13 +9,16 @@ namespace RecipeApp.Recipes.Components
 {
     public partial class RecipeList
     {
+        
         bool _showSettings = false;
         private bool _loading = true;
-        private List<RecipeDTO> _recipes { get; set; } = new();
-        private List<RecipeDTO> _originalRecipes { get; set; } = new();
+
+
+        public List<RecipeDTO> _recipes { get; set; } = new();
+        public List<RecipeDTO> _originalRecipes { get; set; } = new();
         public CategoryType selectedCat { get; set; } = CategoryType.Everyone;
-        
         public string searchText { get; set; } = string.Empty;
+        public string divStatus { get; set; } = string.Empty;
         
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -55,8 +58,19 @@ namespace RecipeApp.Recipes.Components
         public void ToggleSettings()
         {
             _showSettings = !_showSettings;
+
+            if (_showSettings)
+            {
+                searchText = string.Empty;
+                divStatus = "pointer-events: none;";
+            }
+            else
+                divStatus = string.emp;
+                
+
             StateHasChanged();
         }
+
         async Task<List<RecipeDTO>> GetAllRecipesAsync()
         {
             RestRequest request = new RestRequest(RecipeAPI.AllRecipes);
@@ -76,6 +90,7 @@ namespace RecipeApp.Recipes.Components
             return nullOrEmptyCheck.Data;
 
         }
+
         async void NavigateToDetail(Guid id)
         {
             _nav.NavigateTo($"/Recipe/{id}");

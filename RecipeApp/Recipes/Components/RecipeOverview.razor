@@ -10,31 +10,34 @@
 }
 else
 {
-    <div class="card shadow-lg border-hovered" style="height:300px;">
+    <div class="card shadow-lg border-hovered">
         <div class="card-header text-center align-middle bg-black text-secondary">
             <h2 class="fw-bolder">@Recipe.Title</h2>
         </div>
-        <div class="card-body d-grid" style="background-image:url(@Recipe.Image); background-position:center;background-repeat:no-repeat;background-size:cover;">
-            <div class="row align-top align-items-start">
-                <div class="col-12 fw-bold text-white text-start">
-                    @if ((Recipe.ExpenseRating != null) && (Recipe.ExpenseRating > 0))
-                    {
-                        @foreach (var ratingCount in Enumerable.Range(1, Convert.ToInt32(Recipe.ExpenseRating)))
-                        {
-                            <span class="oi oi-dollar fw-bold text-black m-2"></span>
-                        }
-                    }
-
-                </div>
-            </div>
+        <div class="card-body d-grid" style="height:220px;background-image:url(@Recipe.Image); background-position:center;background-repeat:no-repeat;background-size:cover;">
             <div class="row align-bottom align-items-end">
-                <div class="col-12 fw-bold text-white text-end ">
+                <div class="col-12 fw-bold text-secondary text-end" >
                     <span>@Recipe.CategoryName</span>
                 </div>
             </div>
         </div>
         <div class="card-footer fw-bold text-center">
-            <span>@Recipe.Description</span>
+            <div class="row">
+                <div class="col-12 fw-bold text-white text-start text-center">
+                    @if ((Recipe.ExpenseRating != null) && (Recipe.ExpenseRating > 0))
+                    {
+                        @foreach (var ratingCount in Enumerable.Range(1, Convert.ToInt32(Recipe.ExpenseRating)))
+                        {
+                            <span class="oi oi-dollar fw-bold text-primary m-2"></span>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="row m-1">
+                <div class="col-12">
+                    <span>@Recipe.Description</span>
+                </div>
+            </div>
         </div>
     </div>
 }

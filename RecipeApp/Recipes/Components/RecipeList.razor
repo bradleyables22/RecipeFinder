@@ -29,7 +29,7 @@ else
             </div>
         </div>
     }
-    <div class="slide-in" style="margin-bottom:100px;">
+    <div class="slide-in" style="margin-bottom:100px; @divStatus">
         @foreach (var recipe in _recipes)
         {
             <div class="slide-in mb-3" @onclick="()=>NavigateToDetail(recipe.RecipeID)">
@@ -52,8 +52,8 @@ else
         else
         {
             <div class="row">
-                <div class="col-12">
-                    <InputText class="form-control-plaintext" @bind-Value="searchText" placeholder="Search.." style="width:75%" @oninput="@((args) => FilterRecipes(args.Value.ToString()))" />
+                <div class="col-12" style="@divStatus">
+                    <InputText class="form-control-plaintext" @bind-Value="searchText" placeholder="Confirm a Category Preference" style="width:75%;" @oninput="@((args) => FilterRecipes(args.Value.ToString()))" />
                 </div>
             </div>
         }
