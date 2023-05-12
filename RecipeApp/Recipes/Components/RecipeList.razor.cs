@@ -13,7 +13,6 @@ namespace RecipeApp.Recipes.Components
         bool _showSettings = false;
         private bool _loading = true;
 
-
         public List<RecipeDTO> _recipes { get; set; } = new();
         public List<RecipeDTO> _originalRecipes { get; set; } = new();
         public CategoryType selectedCat { get; set; } = CategoryType.Everyone;
@@ -52,8 +51,6 @@ namespace RecipeApp.Recipes.Components
                 else
                     _recipes = _originalRecipes;
             }
-
-
         }
         public void ToggleSettings()
         {
